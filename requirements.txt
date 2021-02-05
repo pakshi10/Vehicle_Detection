@@ -1,0 +1,13 @@
+
+numpy==1.18.1
+opencv==4.0.1
+PyQt5==5.12
+PyQt5-sip==4.19.19
+PyQtWebEngine==5.12
+QDarkStyle==2.8.1
+qimage2ndarray==1.8.3
+QtAwesome==0.7.0
+qtconsole==4.7.4
+QtPy==1.9.0
+youtube_dl==2021.1.24.1
+pafy==0.5.5
