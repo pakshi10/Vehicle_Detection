@@ -1,12 +1,12 @@
 # Vehicle_Detection
 
-# Table of Content
-Demo
-Overview
-Motivation
-Technical Aspect
-Installation
-Run
+## Table of Content
+  * [Demo](#demo)
+  * [Overview](#overview)
+  * [Motivation](#motivation)
+  * [Technical Aspect](#technical-aspect)
+  * [Installation](#installation)
+  * [Run](#run)
 
 # Demo
 
@@ -20,7 +20,7 @@ What could be a perfect way to utilize your knowledge. The idea of this project 
 
 # Technical Aspect 
 This project is divided into two part:
-  Using a deep learning model to identify Vehicle. (Not covered in this repo. I'll update the link here once I make it public.)
+  Using a deep learning model to identify Vehicle.
   Building GUI using PyQt5.
   
  
