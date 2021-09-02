@@ -21,16 +21,8 @@ def box_values(i):
     (w, h) = (boxes[i][2], boxes[i][3])
     cen = [int(x + w / 2), int(y + h / 2)]
     return x,w,y,h,cen
-#bird eye is not used right now
-def Bird_eye_transform(H,W,cen):
-    #src = np.float32([[952,669],[1222,559],[95,286],[404,286]])
-    src = np.float32([[1075,669],[1278,496],[4,286],[294,226]])
-    dst = np.float32([[0, H], [W, H], [0, 0], [W, 0]])
-    M = cv2.getPerspectiveTransform(src, dst)
-    pts = np.array([[cen]], dtype="float32")
-    warped_pt = cv2.perspectiveTransform(pts, M)[0][0]
-    warped_pt_scaled = [int(warped_pt[0] * 0.3), int(warped_pt[1] * 1)]
-    return warped_pt_scaled
+
+
 
 
 
@@ -175,39 +167,7 @@ def yolo(frame):
         safe_p = status.count(0)
         kk = 0
     
-        for i in idf:
-
-            x,w,y,h,cen = box_values(i)
-            warped_pt_scaled = Bird_eye_transform(H,W,cen)
-
-            if status[kk] == 1:
-                cv2.rectangle(frame, (x, y), (x + w, y + h), (66, 66, 255), 2)
-                cv2.circle(frm,(warped_pt_scaled[0]*2, warped_pt_scaled[1]),
-                                    10,(66, 66, 255),-1)
-
-            elif status[kk] == 0:
-                cv2.rectangle(frame, (x, y), (x + w, y + h), (128, 255, 0), 2)
-                cv2.circle(frm,(warped_pt_scaled[0]*2, warped_pt_scaled[1]),
-                                    10,(128, 255, 0),-1)
-
-            else:
-                cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 120, 255), 2)
-                #cv2.circle(frm,(warped_pt_scaled[0], warped_pt_scaled[1]),10,(0, 120, 255),-1)
-
-            kk += 1
-    
-        for h in close_pair:
-            
-            cv2.line(frame, tuple(h[0]), tuple(h[1]), (66, 66, 255), 2)
-            centr_pnt1 = Bird_eye_transform(H,W*2,h[0])
-            centr_pnt2 = Bird_eye_transform(H,W*2,h[1])
-            cv2.line(frm, tuple(centr_pnt1), tuple(centr_pnt2), (66, 66, 255), 5)
-                
-        for b in s_close_pair:
-            cv2.line(frame, tuple(b[0]), tuple(b[1]), (128, 255, 0), 2)
-            #centr_pnt1 = Bird_eye_transform(H,W,b[0])
-            #centr_pnt2 = Bird_eye_transform(H,W,b[1])
-            #cv2.line(frm, tuple(centr_pnt1), tuple(centr_pnt2), (0, 255, 255), 5)
+        
                 
 
     return  frame,total_p, high_risk_p, safe_p
